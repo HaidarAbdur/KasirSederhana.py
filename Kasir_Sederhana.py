@@ -6,12 +6,37 @@ def menu_utama():
    print('======Menu Kasir======\n')
    print('1.Mulai transaksi')
    print('2.Riwayat transaksi hari ini')
-   print('3.Keluar')
-   return input('Silahkan pilih menu program[1/2/3]: ')
+   print('3.Admin')
+   print('4.Keluar')
+   return input('Silahkan pilih menu program[1/2/3/4]: \n')
    # =========================== Menu 1 ================================
-   #                              
-def transaksi():
- 
+
+def menu_admin(total_harian):
+   password = 'admin123'
+   print('======Menu Admin======\n')
+   pw = input('Masukan password: ')
+   if pw != password:
+      print('Password salah,silahkan ulangi!')
+      return total_harian
+   
+   while True:
+      print('\n1.Total pemasukan')
+      print('2.Reset Total pemasukan')
+      print('3.Kembali')
+      pilih = input('Silahkan pilih menu 1/2/3: ')
+      if pilih == "1":
+            print(f'total pemasukan hari ini: Rp{total_harian:.2f}')
+      elif pilih == "2":
+         total_harian = 0
+         print('Total berhasil direset!!')
+      elif pilih == "3":
+         print('Kembali ke menu utama...')
+         break
+      else:
+         print('Input tidak valid')
+         continue
+
+def transaksi(): 
  daftar_barang = []
  total_belanja = 0
 
@@ -39,13 +64,13 @@ def transaksi():
 
          tambah_barang = input('Apakah ingin menambahkan barang?[y/n]: ').lower()
          if tambah_barang == "y":  
-            continue
+            break
          elif tambah_barang == 'n':
             print('transaksi selesai!')
             print(f'Total belanja anda sebesar Rp.{total_belanja:.2f}')
+            break
          else:
             print('Masukan input yang sesuai!!')
-            continue
          break
 
  return total_belanja,daftar_barang
@@ -139,9 +164,13 @@ def program_kasir():
           print(f'total pemasukan hari ini: Rp{total_harian:.2f}')
       
       elif menu == '3':
+        total_harian = menu_admin(total_harian)
+        
+      elif menu == '4':
          print('Kasir ditutup👋')
          break
       else:
-         print('Menu tidak valid ')
+         print('Input tidak valid')
+         break
 
 program_kasir()
