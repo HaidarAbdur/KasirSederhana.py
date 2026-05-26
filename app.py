@@ -1,5 +1,4 @@
-print('======Kasir Sederhana======\n')
-
+print('Kasir Sederhana')
 total_harian = 0
 
 def menu_utama():
@@ -59,23 +58,18 @@ def transaksi():
          subtotal = harga*jumlah
          total_belanja += subtotal
          daftar_barang.append((nama,harga,jumlah,subtotal))
-
-         print(f'Subtotal: Rp{subtotal:.2f}')
-
-         tambah_barang = input('Apakah ingin menambahkan barang?[y/n]: ').lower()
-         if tambah_barang == "y":  
-            break
-         elif tambah_barang == 'n':
-            print('transaksi selesai!')
+         while True:
+            tambah_barang = input('Apakah ingin menambahkan barang?[y/n]: ').lower()
+            if tambah_barang == "y":  
+               break
+            elif tambah_barang == 'n':
+               print('transaksi selesai!')
             print(f'Total belanja anda sebesar Rp.{total_belanja:.2f}')
-            break
+            return total_belanja,daftar_barang
          else:
             print('Masukan input yang sesuai!!')
-         break
-
- return total_belanja,daftar_barang
-
-         # total belanja
+            
+   # total belanja
    # ========================== Menu 2 ==============================
 def hitung_diskon(total_belanja):
     potongan = 0
@@ -172,5 +166,4 @@ def program_kasir():
       else:
          print('Input tidak valid')
          break
-
 program_kasir()
