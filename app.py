@@ -1,4 +1,4 @@
-print('Kasir Sederhana')
+print('    Kasir Sederhana')
 total_harian = 0
 
 def menu_utama():
@@ -28,12 +28,14 @@ def menu_admin(total_harian):
       elif pilih == "2":
          total_harian = 0
          print('Total berhasil direset!!')
+         continue
       elif pilih == "3":
          print('Kembali ke menu utama...')
          break
       else:
          print('Input tidak valid')
          continue
+   return total_harian
 
 def transaksi(): 
  daftar_barang = []
@@ -155,7 +157,7 @@ def program_kasir():
          total_harian += total_bayar
 
       elif menu == '2':
-          print(f'total pemasukan hari ini: Rp{total_harian:.2f}')
+          print (f'total pemasukan hari ini: Rp{total_harian:.2f}')
       
       elif menu == '3':
         total_harian = menu_admin(total_harian)

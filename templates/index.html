@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir Sederhana</title>
+    <!-- Hubungkan ke CSS di folder static root -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Google Fonts untuk font premium -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Aplikasi -->
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="icon">🛒</span>
+                <h1>Kasir<span>Sederhana</span></h1>
+            </div>
+            <button id="btn-admin" class="btn-secondary">🔑 Menu Admin</button>
+        </header>
+
+        <!-- Main Content Layout -->
+        <main class="app-main">
+            <!-- Kolom Kiri: Input & Keranjang Belanja -->
+            <section class="left-panel">
+                <!-- Form Tambah Barang -->
+                <div class="card">
+                    <h2>Tambah Barang</h2>
+                    <form id="form-tambah-barang">
+                        <div class="form-group">
+                            <input type="text" id="input-nama" placeholder="Nama Barang" required autocomplete="off">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="number" id="input-harga" placeholder="Harga Satuan (Rp)" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="input-jumlah" placeholder="Jumlah" min="1" required>
+                            </div>
+                        </div>
+                        <button type="submit" id="btn-tambah" class="btn-primary">➕ Tambah ke Keranjang</button>
+                    </form>
+                </div>
+
+                <!-- Tabel Keranjang Belanja -->
+                <div class="card keranjang-card">
+                    <h2>Keranjang Belanja</h2>
+                    <div class="table-container">
+                        <table id="tabel-keranjang">
+                            <thead>
+                                <tr>
+                                    <th>Nama Barang</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah</th>
+                                    <th>Subtotal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="list-barang">
+                                <!-- Baris barang akan dibuat dinamis oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Kolom Kanan: Ringkasan Pembayaran & Struk -->
+            <section class="right-panel">
+                <!-- Card Pembayaran -->
+                <div class="card payment-card">
+                    <h2>Pembayaran</h2>
+                    <div class="payment-summary">
+                        <div class="summary-row">
+                            <span>Total Belanja</span>
+                            <span id="text-total" class="price-text">Rp 0</span>
+                        </div>
+
+                        <label class="member-checkbox-label">
+                            <input type="checkbox" id="cbox-member">
+                            <span class="custom-checkbox"></span>
+                            Punya Kartu Member?
+                        </label>
+
+                        <div class="summary-row diskon-row">
+                            <span>Total Diskon</span>
+                            <span id="text-diskon" class="price-text text-success">Rp 0</span>
+                        </div>
+                        <hr>
+                        <div class="summary-row total-row">
+                            <span>Total Bayar</span>
+                            <span id="text-total-bayar" class="price-text final-price">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-action">
+                        <div class="form-group">
+                            <label for="input-bayar"
+                                style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px; display: block;">Masukkan
+                                Uang Bayar:</label>
+                            <input type="number" id="input-bayar" placeholder="Nominal Bayar (Rp)">
+                        </div>
+                        <button id="btn-bayar" class="btn-success">💵 Bayar & Cetak Struk</button>
+                        <p id="error-message" class="text-danger"></p>
+                    </div>
+                </div>
+
+                <!-- Card Struk Digital (Muncul setelah transaksi berhasil) -->
+                <div class="card receipt-card" id="receipt-card" style="display: none;">
+                    <div class="receipt-header">
+                        <h3>STRUK BELANJA</h3>
+                        <p>Kasir Sederhana Digital</p>
+                        <p id="receipt-date"></p>
+                    </div>
+                    <hr class="dashed">
+                    <div class="receipt-items" id="receipt-items-list">
+                        <!-- Detail item struk belanja -->
+                    </div>
+                    <hr class="dashed">
+                    <div class="receipt-details">
+                        <div class="receipt-row">
+                            <span>Total Belanja:</span>
+                            <span id="receipt-total">Rp 0</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Diskon Member:</span>
+                            <span id="receipt-discount">Rp 0</span>
+                        </div>
+                        <div class="receipt-row bold">
+                            <span>Total Bayar:</span>
+                            <span id="receipt-final">Rp 0</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Uang Tunai:</span>
+                            <span id="receipt-cash">Rp 0</span>
+                        </div>
+                        <div class="receipt-row bold text-success">
+                            <span>Kembalian:</span>
+                            <span id="receipt-change">Rp 0</span>
+                        </div>
+                    </div>
+                    <hr class="dashed">
+                    <div class="receipt-footer">
+                        <p>Terima Kasih Atas Kunjungan Anda! 🙏</p>
+                    </div>
+                    <button id="btn-transaksi-baru" class="btn-secondary" style="width: 100%; margin-top: 15px;">🔄
+                        Transaksi Baru</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Dialog Admin -->
+    <div id="modal-admin" class="modal">
+        <div class="modal-content card">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2>🔑 Menu Admin</h2>
+            <hr style="margin-bottom: 20px; border-color: rgba(255,255,255,0.05);">
+
+            <!-- Layar Login Admin -->
+            <div id="admin-login-section">
+                <div class="form-group">
+                    <label for="admin-password"
+                        style="font-size: 0.9rem; margin-bottom: 5px; display: block; color: var(--text-muted);">Masukkan
+                        Password Admin:</label>
+                    <input type="password" id="admin-password" placeholder="Password (default: admin123)">
+                </div>
+                <button id="btn-login-admin" class="btn-primary" style="width: 100%;">Masuk</button>
+                <p id="admin-login-error" class="text-danger" style="margin-top: 10px; text-align: center;"></p>
+            </div>
+
+            <!-- Dashboard Admin (Tersembunyi, muncul jika login sukses) -->
+            <div id="admin-dashboard-section" style="display: none;">
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Total Pemasukan Hari Ini:</p>
+                <h1 id="text-pemasukan-admin"
+                    style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; color: var(--success-color); margin: 15px 0;">
+                    Rp 0</h1>
+                <div class="admin-actions">
+                    <button id="btn-reset-pemasukan" class="btn-danger">🗑️ Reset Pemasukan</button>
+                    <button id="btn-logout-admin" class="btn-secondary">Keluar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hubungkan ke JS di static root -->
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
