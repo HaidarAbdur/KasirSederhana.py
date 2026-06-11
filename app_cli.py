@@ -1,4 +1,4 @@
-print('    Kasir Sederhana')
+print('Kasir Sederhana')
 total_harian = 0
 
 def menu_utama():
@@ -38,10 +38,10 @@ def menu_admin(total_harian):
    return total_harian
 
 def transaksi(): 
- daftar_barang = []
- total_belanja = 0
+  daftar_barang = []
+  total_belanja = 0
 
- while True:
+  while True:
          nama = input('Masukan nama barang :')
          try:
             

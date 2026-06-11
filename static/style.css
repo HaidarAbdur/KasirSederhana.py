@@ -3,16 +3,23 @@
    ========================================== */
 
 :root {
-    --bg-color: #0b0f19;         /* Dark Space Background */
-    --card-bg: #161f30;          /* Deep Slate Card Background */
-    --primary-color: #6366f1;     /* Indigo Accent */
+    --bg-color: #0b0f19;
+    /* Dark Space Background */
+    --card-bg: #161f30;
+    /* Deep Slate Card Background */
+    --primary-color: #6366f1;
+    /* Indigo Accent */
     --primary-hover: #4f46e5;
-    --success-color: #10b981;     /* Emerald Green */
+    --success-color: #10b981;
+    /* Emerald Green */
     --success-hover: #059669;
-    --danger-color: #f43f5e;      /* Rose Red */
+    --danger-color: #f43f5e;
+    /* Rose Red */
     --danger-hover: #e11d48;
-    --text-main: #f8fafc;         /* White Text */
-    --text-muted: #94a3b8;        /* Muted Blue-Grey */
+    --text-main: #f8fafc;
+    /* White Text */
+    --text-muted: #94a3b8;
+    /* Muted Blue-Grey */
     --border-color: rgba(255, 255, 255, 0.06);
     --glass-bg: rgba(22, 31, 48, 0.7);
     --glass-border: rgba(255, 255, 255, 0.05);
@@ -36,7 +43,7 @@ body {
     display: flex;
     justify-content: center;
     background-image: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                      radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 45%);
+        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 45%);
 }
 
 .container {
@@ -220,7 +227,8 @@ table {
     font-size: 0.95rem;
 }
 
-th, td {
+th,
+td {
     padding: 12px 14px;
     border-bottom: 1px solid var(--border-color);
 }
@@ -254,6 +262,7 @@ tbody tr:hover {
     .app-main {
         grid-template-columns: 1fr;
     }
+
     body {
         padding: 15px 5px;
     }
@@ -334,12 +343,12 @@ hr {
     transition: all 0.2s ease;
 }
 
-.member-checkbox-label input:checked + .custom-checkbox {
+.member-checkbox-label input:checked+.custom-checkbox {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
 }
 
-.member-checkbox-label input:checked + .custom-checkbox::after {
+.member-checkbox-label input:checked+.custom-checkbox::after {
     content: "✓";
     position: absolute;
     color: white;
@@ -365,7 +374,7 @@ hr {
     font-family: 'Courier New', Courier, monospace;
     border: none;
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     padding: 25px;
     transform: scale(0.98);
 }
@@ -489,6 +498,7 @@ hr.dashed {
         opacity: 0;
         transform: translateY(20px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -510,4 +520,87 @@ hr.dashed {
 
 .bold {
     font-weight: 600;
+}
+
+/* ==========================================
+   RIWAYAT TRANSAKSI STYLING
+   ========================================== */
+.riwayat-section table {
+    margin-top: 10px;
+    font-size: 0.85rem;
+}
+
+.riwayat-section th,
+.riwayat-section td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.riwayat-table-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.riwayat-table-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.riwayat-table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.riwayat-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.riwayat-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.btn-detail-riwayat {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    gap: 4px;
+}
+
+.btn-detail-riwayat:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Detail Transaksi Modal Custom */
+#detail-transaksi-body {
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.detail-row.bold {
+    font-weight: 600;
+}
+
+.detail-items-list {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.detail-item-spec {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
 }

@@ -183,6 +183,40 @@
                     <button id="btn-reset-pemasukan" class="btn-danger">🗑️ Reset Pemasukan</button>
                     <button id="btn-logout-admin" class="btn-secondary">Keluar</button>
                 </div>
+
+                <!-- Riwayat Transaksi Section -->
+                <div class="riwayat-section"
+                    style="margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                    <h3
+                        style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 15px; color: var(--text-main);">
+                        📜 Riwayat Transaksi</h3>
+                    <div class="table-container riwayat-table-wrapper" style="max-height: 200px; overflow-y: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th>Waktu</th>
+                                    <th>Total Bayar</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="list-riwayat">
+                                <!-- Diisi secara dinamis oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detail Transaksi Admin (Premium Popup) -->
+    <div id="modal-detail-transaksi" class="modal">
+        <div class="modal-content card" style="max-width: 400px;">
+            <span class="close-btn" id="close-modal-detail">&times;</span>
+            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem;">📄 Detail Transaksi</h2>
+            <hr style="margin-bottom: 15px; border-color: rgba(255,255,255,0.05);">
+            <div id="detail-transaksi-body">
+                <!-- Detail item dan kalkulasi belanja diisi oleh JavaScript -->
             </div>
         </div>
     </div>
